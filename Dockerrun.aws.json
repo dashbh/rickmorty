@@ -21,7 +21,7 @@
       "name": "mongo",
       "image": "bhadash1/mongo",
       "hostname": "mongo",
-      "essential": false,
+      "essential": true,
       "memory": 128
     }
   ]
