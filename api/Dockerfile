@@ -1,10 +1,10 @@
 FROM node:10
 
-COPY api/package.json ./
+COPY package.json ./
 
 RUN npm install
 
-COPY api/ .
+COPY . .
 
 EXPOSE 3001
 CMD [ "npm", "start" ]
