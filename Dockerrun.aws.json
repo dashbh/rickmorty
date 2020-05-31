@@ -1,0 +1,28 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "bhadash1/client",
+      "hostname": "client",
+      "essential": false,
+      "memory": 128,
+      "links": ["client"]
+    },
+    {
+      "name": "api",
+      "image": "bhadash1/api",
+      "hostname": "api",
+      "essential": false,
+      "memory": 128,
+      "links": ["server"]
+    },
+    {
+      "name": "mongo",
+      "image": "bhadash1/mongo",
+      "hostname": "mongo",
+      "essential": false,
+      "memory": 128
+    }
+  ]
+}

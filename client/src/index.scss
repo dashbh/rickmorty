@@ -1,0 +1,91 @@
+$primary: #0097A7;
+$color: #606c76;
+
+@import 'normalize';
+
+body {
+  color: $color;
+  margin: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 112.0rem;
+	padding: 0 2.0rem;
+	position: relative;
+	width: 100%;
+}
+
+.button {
+	background-color: $primary;
+	border: 1px solid $primary;
+  border-radius: 2px;
+  color: #fff;
+  padding: 5px 20px;
+  margin: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
+
+	&:focus,
+	&:hover {
+		background-color: rgba($primary, .8);
+  }
+}
+
+input {
+	border: 1px solid rgba($color, .3);
+  border-radius: 2px;
+  &[type='text'], &[type='password'] {
+    padding: 5px 10px;
+  }
+
+	&:focus {
+		border-color: $primary;
+		outline: 0;
+	}
+}
+
+select {
+  border: 1px solid rgba($color, .3);
+  border-radius: 2px;
+  color: $color;
+  padding: 5px;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+}
+
+.loginWrapper {
+  width: 420px;
+  border: 1px solid rgba($color, .1);
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+}
+
+.form-group {
+  text-align: left;
+  label {
+    min-width: 100px;
+    display: inline-block;
+    padding: 10px;
+  }
+}
+
+.form-action {
+  margin: 20px 0 10px 0;
+}

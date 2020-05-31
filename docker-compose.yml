@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mongodb_container:
+    build: ./docker/mongo/Dockerfile
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: rickmorty
+    ports:
+      - 27017:27017
+    image: rickmorty/mongo
+
+  api_container:
+    build:
+      context: ./
+      dockerfile: ./docker/api/Dockerfile
+    restart: always
+    depends_on:
+        - mongodb_container
+    ports:
+      - "3001:3001"
+    image: rickmorty/api
+
+  node_container:
+    build:
+      context: ./
+      dockerfile: ./docker/client/Dockerfile
+    restart: always
+    depends_on:
+        - api_container
+    ports:
+      - "8080:8080"
+    image: rickmorty/web
