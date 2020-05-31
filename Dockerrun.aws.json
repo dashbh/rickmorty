@@ -7,7 +7,7 @@
       "hostname": "client",
       "essential": false,
       "memory": 128,
-      "links": ["client"]
+      "links": ["api"]
     },
     {
       "name": "api",
@@ -15,7 +15,7 @@
       "hostname": "api",
       "essential": false,
       "memory": 128,
-      "links": ["server"]
+      "links": ["mongo"]
     },
     {
       "name": "mongo",

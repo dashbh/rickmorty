@@ -26,6 +26,7 @@ deploy:
   env: RickAndMorty-env
   bucket_name: elasticbeanstalk-us-east-2-089781076407
   bucket_path: docker-rick-and-morty
+  skip_cleanup: true
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
