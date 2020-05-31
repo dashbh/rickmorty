@@ -3,15 +3,15 @@ services:
   - docker
 
 before_install:
-  - docker build -t bhadash1/react-test -f ./docker/client/Dev.Dockerfile ./client
+  - docker build -t bhadash1/react-test -f ./client/Dev.Dockerfile ./client
 
 script:
   - docker run bhadash1/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t bhadash1/client ./docker/client
-  - docker build -t bhadash1/api ./docker/api
-  - docker build -t bhadash1/mongo ./docker/mongo
+  - docker build -t bhadash1/client ./client
+  - docker build -t bhadash1/api ./api
+  - docker build -t bhadash1/mongo ./mongo
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push to docker hub
