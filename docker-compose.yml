@@ -9,7 +9,7 @@ services:
       - '3050:80'
 
   mongodb_container:
-    build: ./docker/mongo/Dockerfile
+    build: ./mongo/.
     restart: always
     environment:
       MONGO_INITDB_DATABASE: rickmorty
@@ -18,9 +18,7 @@ services:
     image: rickmorty/mongo
 
   api_container:
-    build:
-      context: ./
-      dockerfile: ./docker/api/Dockerfile
+    build: ./api/.
     restart: always
     depends_on:
         - mongodb_container
@@ -30,8 +28,7 @@ services:
 
   node_container:
     build:
-      context: ./
-      dockerfile: ./docker/client/Dockerfile
+      context: ./client/.
     restart: always
     depends_on:
         - api_container
