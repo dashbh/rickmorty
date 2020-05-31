@@ -6,8 +6,7 @@
       "image": "bhadash1/client",
       "hostname": "client",
       "essential": false,
-      "memory": 128,
-      "links": ["api"]
+      "memory": 128
     },
     {
       "name": "api",
@@ -21,7 +20,21 @@
       "name": "mongo",
       "image": "bhadash1/mongo",
       "hostname": "mongo",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "bhadash1/nginx",
+      "hostname": "nginx",
       "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "api"],
       "memory": 128
     }
   ]

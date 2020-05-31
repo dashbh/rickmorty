@@ -12,7 +12,7 @@ import Register from './components/Register';
 import API from './utils/api';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  uri: '/api/graphql',
 });
 
 export const UserContext = React.createContext({});

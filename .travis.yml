@@ -12,12 +12,14 @@ after_success:
   - docker build -t bhadash1/client ./client
   - docker build -t bhadash1/api ./api
   - docker build -t bhadash1/mongo ./mongo
+  - docker build -t bhadash1/nginx ./nginx
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push to docker hub
   - docker push bhadash1/client
   - docker push bhadash1/api
   - docker push bhadash1/mongo
+  - docker push bhadash1/nginx
 
 deploy:
   provider: elasticbeanstalk
