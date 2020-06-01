@@ -13,7 +13,7 @@ const auth = require('./auth');
 
 const host = 'localhost';
 
-mongoose.connect(`mongodb://${host}:27017/rickmorty`, {
+mongoose.connect(`mongodb://mongo:27017/rickmorty`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

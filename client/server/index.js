@@ -8,7 +8,8 @@ const app = express();
 const router = express.Router();
 
 const serverRenderer = (req, res, next) => {
-  fs.readFile(path.resolve('./build/index.html'), 'utf8', (err, data) => {
+  const index = path.join(__dirname, 'build', 'index.html');
+  fs.readFile(index, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).send('An error occurred');

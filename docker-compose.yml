@@ -8,7 +8,7 @@ services:
     ports:
       - '3050:80'
 
-  mongodb_container:
+  mongo:
     build: ./mongo/.
     restart: always
     environment:
@@ -17,21 +17,19 @@ services:
       - 27017:27017
     image: rickmorty/mongo
 
-  api_container:
+  api:
     build: ./api/.
     restart: always
     depends_on:
-        - mongodb_container
+        - mongo
     ports:
-      - "3001:3001"
+      - "5000:5000"
     image: rickmorty/api
 
-  node_container:
+  client:
     build:
       context: ./client/.
     restart: always
-    depends_on:
-        - api_container
     ports:
-      - "8080:8080"
+      - "3000:3000"
     image: rickmorty/web
