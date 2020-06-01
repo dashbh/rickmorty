@@ -8,7 +8,7 @@ const app = express();
 const router = express.Router();
 
 const serverRenderer = (req, res, next) => {
-  const index = path.join(__dirname, 'build', 'index.html');
+  const index = path.join(__dirname, '..', 'build', 'index.html');
   fs.readFile(index, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
