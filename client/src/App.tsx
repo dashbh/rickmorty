@@ -10,6 +10,7 @@ import { PrivateRoute } from './PrivateRoute';
 import Login from './components/Login';
 import Register from './components/Register';
 import API from './utils/api';
+import reducer from './reducer';
 
 const client = new ApolloClient({
   uri: '/api/graphql',
@@ -19,28 +20,8 @@ export const UserContext = React.createContext({});
 
 const initialState = {
   user: {
-    isAuth: false
-  }
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'loginUser':
-      return {
-        ...state,
-        auth: action.payload.token,
-        name: action.payload.user,
-        isAuth: true
-      };
-    case 'logoutUser':
-      return {
-        ...state,
-        auth: '',
-        name: '',
-        isAuth: false
-      };
-    default:
-      return state;
+    isAuth: false,
+    status: null
   }
 };
 
@@ -52,15 +33,21 @@ const UserContextProvider = props => {
       value={{
         ...state,
         handleLogin: (data) => API.login(data).then((response: any) => {
-          dispatch({
-            type: 'loginUser',
-            payload: {
-              auth: response.token,
-              user: response.user
-            }
-          });
+          if (response.error) {
+            dispatch({ type: 'loginError', payload: response });
+          } else {
+            dispatch({ type: 'loginSuccess', payload: response });
+          }
         }),
-        handleRegister: (data) => API.register(data),
+
+        handleRegister: (data) => API.register(data).then((response: any) => {
+          if (response.error) {
+            dispatch({ type: 'registrationFailed', payload: response });
+          } else {
+            dispatch({ type: 'registrationSuccess', payload: response });
+          }
+        }),
+
         handleLogout: () => {
           localStorage.removeItem('user');
           dispatch({

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { Redirect } from 'react-router-dom';
+import Message from '../Message';
 
 class Login extends React.Component<any, any> {
     constructor(props) {
@@ -36,6 +37,7 @@ class Login extends React.Component<any, any> {
                         <Redirect to='/' />
                     ) : (
                             <React.Fragment>
+                                { user.status && (<Message status={user.status} />) }
                                 <h2>Login</h2>
                                 <form name="form" onSubmit={(e) => this.handleSubmit(e, user)}>
                                     <div className="form-group">

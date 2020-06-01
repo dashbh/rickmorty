@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
-import { Redirect } from 'react-router-dom';
+import Message from '../Message';
 
 class Register extends React.Component<any, any> {
     constructor(props) {
@@ -26,16 +26,15 @@ class Register extends React.Component<any, any> {
             username: this.state.username,
             password: this.state.password
         });
-
-        console.log('User Registred Successfully !!');
     }
 
     render() {
         const { username, password, confPassword } = this.state;
         return (
             <UserContext.Consumer>
-                {user => (
+                {(user: any) => (
                     <div className="container loginWrapper">
+                        { user.status && (<Message status={user.status} />) }
                         <h2>Register</h2>
                         <form name="form" onSubmit={(e) => this.handleSubmit(e, user)}>
                             <div className="form-group">

@@ -14,7 +14,7 @@ router.post('/signup', async (req, res) => {
     try {
         let user = await User.findOne({ username });
         if (user) {
-            return res.status(400).json({ msg: "Username is Taken !!" });
+            return res.status(400).json({ error: "Username is Taken !!" });
         }
 
         user = new User({
@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
         await bcrypt.hash(password, saltRounds, async (err, hash) => {
             user.password = hash;
             await user.save();
-            res.status(200).json({ msg: 'User Saved Successfully' })
+            res.status(200).json({ message: 'User Registered Successfully.' })
         });
     } catch (err) {
         console.log(err.message);
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
         let user = await User.findOne({ username });
         if (!user) {
             return res.status(400).json({
-                message: "User Doesn't exist"
+                error: "Incorrect UserName or Password !"
             });
         }
 
@@ -47,11 +47,13 @@ router.post('/login', async (req, res) => {
             if (result) {
                 const payload = getPayload(user);
                 return res.status(200).json({
-                    payload
+                    token: payload,
+                    user: username,
+                    message: 'Login Successful.'
                 });
             }
             return res.status(400).json({
-                message: "Incorrect Password !"
+                error: "Incorrect UserName or Password !"
             });
         });
 
