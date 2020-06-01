@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = '/app';
+const api = '/api';
 
 const login = async (data: any) => {
   try {
